@@ -49,8 +49,18 @@ h1 {
     border: 2px solid black;
     margin-top: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
+}
+
+.hightext {
+    color: rgb(26, 53, 45);
+    background-color: rgb(106, 212, 181);
+    font-size: 28px;
+    top: 24%;
+    margin: 5px;
+    position: fixed;
 }
 
 .lowtext {
@@ -60,19 +70,88 @@ h1 {
     background-color: rgb(106, 212, 181)
 }
 
-.row1 {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-end;
-    top: 37%;
+button {
+    text-align: center;
+}
+
+.row1,
+.row2,
+.row3,
+.row4,
+.row5 {
     position: fixed;
     background-color: rgb(26, 53, 45);
 }
 
+.row1 {
+    top: 37%;
+}
+
 .clear,
-.backspace {
+.backspace,
+.decimal {
     width: 170px;
     height: 50px;
     border: 2px solid black;
     border-radius: 10px;
+    color: black;
+    background-color: rgb(100, 100, 100);
+    font-size: 32px;
+}
+
+.row2 {
+    top: 44%;
+}
+
+.input {
+    width: 80px;
+    height: 80px;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 32px;
+}
+
+.row3 {
+    top: 54%;
+}
+
+.operator {
+    background-color: rgb(76, 106, 150);
+    color: black;
+}
+
+.row4 {
+    top: 64%
+}
+
+.row5 {
+    top: 74%;
+}
+
+.equals {
+    background-color: rgb(255, 115, 115);
+    color: black;
+}
+
+.number:hover {
+    background-color: rgb(84, 167, 142);
+    color: white;
+    cursor: pointer;
+}
+
+.clear:hover,
+.backspace:hover,
+.decimal:hover {
+    background-color: rgb(170, 170, 170);
+    cursor: pointer;
+}
+
+.operator:hover {
+    background-color: rgb(104, 145, 206);
+    cursor: pointer;
+}
+
+.equals:hover {
+    background-color: rgb(255, 169, 169);
+    cursor: pointer;
 }
