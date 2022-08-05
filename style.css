@@ -39,6 +39,7 @@ h1 {
     border: solid 2px black;
     display: flex;
     justify-content: center;
+    box-shadow: 0px 0px 20px rgb(26, 53, 45);
 }
 
 .calcscreen {
