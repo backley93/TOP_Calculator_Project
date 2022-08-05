@@ -1,3 +1,61 @@
 * {
-    text-align: center;
+    background-color: rgb(50, 100, 85);
+    color: rgb(106, 212, 181);
+    font-family: 'Share Tech Mono', sans-serif;
+}
+
+body {
+    margin: 0px;
+}
+
+.header {
+    height: 150px;
+    top: 0%;
+    left: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(26, 53, 45)
+}
+
+h1 {
+    margin: 0px;
+    font-size: 48px;
+    background-color: rgb(26, 53, 45);
+    text-shadow: 3px 3px rgb(58, 117, 99);
+}
+
+.calccont {
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.calculator {
+    width: 400px;
+    height: 600px;
+    background-color: rgb(26, 53, 45);
+    border-radius: 10px;
+    border: solid 2px black;
+    display: flex;
+    justify-content: center;
+}
+
+.calcscreen {
+    width: 350px;
+    height: 100px;
+    background-color: rgb(106, 212, 181);
+    border-radius: 10px;
+    border: 2px solid black;
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.lowtext {
+    color: rgb(26, 53, 45);
+    font-size: 32px;
+    margin: 5px;
+    background-color: rgb(106, 212, 181)
 }

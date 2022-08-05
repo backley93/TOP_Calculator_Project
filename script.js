@@ -6,8 +6,7 @@ const multiply = (a, b) => a * b;
 
 const divide = (a, b) => a / b;
 
-const operate = (a, b, operator) => 
-    
+const operate = function(a, b, operator) {
     if(operator === '+') {
        const sum = add(a, b);
        return sum;
@@ -20,4 +19,5 @@ const operate = (a, b, operator) =>
     } else if(operator === '/') {
         const quotient = divide(a, b);
         return quotient;
-    } ;
+    }
+};
