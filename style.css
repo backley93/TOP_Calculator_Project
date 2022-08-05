@@ -59,3 +59,20 @@ h1 {
     margin: 5px;
     background-color: rgb(106, 212, 181)
 }
+
+.row1 {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    top: 37%;
+    position: fixed;
+    background-color: rgb(26, 53, 45);
+}
+
+.clear,
+.backspace {
+    width: 170px;
+    height: 50px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
