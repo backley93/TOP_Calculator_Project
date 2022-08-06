@@ -27,25 +27,22 @@ const operate = function(a, b, operator) {
 /*Variable numList is a nodelist of all of the buttons
 that display a number, input display is the first portion
 of numbers displayed on the calculators that denote the input,
-number is a placeholder variable that converts the displayed
-number to a number value and displayNum is a string of the 
-text content of the number buttons */
+and displayNum is a string of the text content of the 
+number buttons */
 
 const numList = document.querySelectorAll('.number');
 
 const inputDisplay = document.querySelector('.lowtext');
 
-let number = null;
-
 let displayNum = '';
-
-let aNum = '';
 
 let aNumber = null;
 
-let bNum = '';
+let operatorInput = '';
 
 let bNumber = null;
+
+let answer = null;
 
 /*The following forEach loop, loops over each button in the numList
 and assigns a string value of the button number to the displayNum
@@ -57,10 +54,12 @@ numList.forEach(button => {
     button.addEventListener('click', (e) => {
         displayNum = displayNum + button.textContent;
         inputDisplay.textContent = displayNum;
-        number = parseInt(displayNum);
+        aNumber = parseInt(displayNum);
+        if(aNumber !== null) {
+            bNumber = parseInt(displayNum);
+        }
         if(displayNum.length > 14) {
-            alert('Input number can be no larger than 14 digits!');
-            return;
+            return alert('Input number can be no larger than 15 digits!');
         }
     });
 });
@@ -71,17 +70,12 @@ const operatorList = document.querySelectorAll('.operator');
 
 const topDisplay = document.querySelector('.hightext');
 
-let operatorInput = '';
-
 operatorList.forEach(button => {
     button.addEventListener('click', (e) => {
         operatorInput = button.textContent;
-        aNum = displayNum;
-        aNumber = number;
-        topDisplay.textContent = `${aNum}${operatorInput}`;
+        topDisplay.textContent = `${aNumber}${operatorInput}`;
         inputDisplay.textContent = '';
         displayNum = '';
-        number = null;
     });
 });
 
@@ -90,12 +84,9 @@ operatorList.forEach(button => {
 const equalsSign = document.querySelector('.equals');
 
 equalsSign.addEventListener('click', (e) => {
-    bNum = displayNum;
-    bNumber = number;
-    topDisplay.textContent = `${aNum}${operatorInput}${bNum}${equalsSign.textContent}`;
-    const answer = operate(aNumber, bNumber, operatorInput);
-    const answerDisplay = answer.toString();
-    inputDisplay.textContent = `${answerDisplay}`;
+    topDisplay.textContent = `${aNumber}${operatorInput}${bNumber}${equalsSign.textContent}`;
+    answer = operate(aNumber, bNumber, operatorInput);
+    inputDisplay.textContent = `${answer}`;
 });
 
 /*clearScreen even listener takes the reference to the button element
@@ -111,8 +102,7 @@ clearScreen.addEventListener('click', (e) => {
     displayNum = '';
     number = null;
     operatorInput = '';
-    aNum = '';
     aNumber = null;
-    bNum = '';
     bNumber = null;
 });
+ 
