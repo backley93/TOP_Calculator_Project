@@ -39,6 +39,14 @@ let number = null;
 
 let displayNum = '';
 
+let aNum = '';
+
+let aNumber = null;
+
+let bNum = '';
+
+let bNumber = null;
+
 /*The following forEach loop, loops over each button in the numList
 and assigns a string value of the button number to the displayNum
 string, then that string is displayed on the calculator's text content
@@ -59,15 +67,36 @@ numList.forEach(button => {
 
 //operator functions
 
-// const operatorList = document.querySelectorAll('.operator');
+const operatorList = document.querySelectorAll('.operator');
 
-// const topDisplay = document.querySelectorAll('.hightext');
+const topDisplay = document.querySelector('.hightext');
 
-// operatorList.forEach(button => {
-//     button.addEventListener('click', (e) => {
-        
-//     });
-// });
+let operatorInput = '';
+
+operatorList.forEach(button => {
+    button.addEventListener('click', (e) => {
+        operatorInput = button.textContent;
+        aNum = displayNum;
+        aNumber = number;
+        topDisplay.textContent = `${aNum}${operatorInput}`;
+        inputDisplay.textContent = '';
+        displayNum = '';
+        number = null;
+    });
+});
+
+//equals functions
+
+const equalsSign = document.querySelector('.equals');
+
+equalsSign.addEventListener('click', (e) => {
+    bNum = displayNum;
+    bNumber = number;
+    topDisplay.textContent = `${aNum}${operatorInput}${bNum}${equalsSign.textContent}`;
+    const answer = operate(aNumber, bNumber, operatorInput);
+    const answerDisplay = answer.toString();
+    inputDisplay.textContent = `${answerDisplay}`;
+});
 
 /*clearScreen even listener takes the reference to the button element
 with class clear and when that button is clicked resets the textContent
@@ -81,4 +110,9 @@ clearScreen.addEventListener('click', (e) => {
     topDisplay.textContent = '';
     displayNum = '';
     number = null;
+    operatorInput = '';
+    aNum = '';
+    aNumber = null;
+    bNum = '';
+    bNumber = null;
 });
