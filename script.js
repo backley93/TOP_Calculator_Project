@@ -84,11 +84,13 @@ const topDisplay = document.querySelector('.hightext');
 
 operatorList.forEach(button => {
     button.addEventListener('click', (e) => {
-        operatorInput = button.textContent;
-        topDisplay.textContent = `${aNumber} ${operatorInput}`;
-        inputDisplay.textContent = '';
-        displayNum = '';
-        isDecimal = false;
+        if(bNumber === null) {
+            operatorInput = button.textContent;
+            topDisplay.textContent = `${aNumber} ${operatorInput}`;
+            inputDisplay.textContent = '';
+            displayNum = '';
+            isDecimal = false;
+        }
     });
 });
 
