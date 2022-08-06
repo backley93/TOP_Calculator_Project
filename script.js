@@ -34,6 +34,8 @@ const numList = document.querySelectorAll('.number');
 
 const inputDisplay = document.querySelector('.lowtext');
 
+const decimal = document.querySelector('.decimal');
+
 let displayNum = '';
 
 let aNumber = null;
@@ -44,6 +46,8 @@ let bNumber = null;
 
 let answer = null;
 
+let isDecimal = false;
+
 /*The following forEach loop, loops over each button in the numList
 and assigns a string value of the button number to the displayNum
 string, then that string is displayed on the calculator's text content
@@ -52,16 +56,24 @@ number placeholder variable. */
 
 numList.forEach(button => {
     button.addEventListener('click', (e) => {
+        if(isDecimal === true && button.textContent === '.') {
+            return alert('Can only enter one decimal.');
+        }
         displayNum = displayNum + button.textContent;
         inputDisplay.textContent = displayNum;
-        aNumber = parseInt(displayNum);
-        if(aNumber !== null) {
-            bNumber = parseInt(displayNum);
+        if(operatorInput === '') {
+            aNumber = parseFloat(displayNum);
+        } else {
+            bNumber = parseFloat(displayNum);
         }
         if(displayNum.length > 14) {
             return alert('Input number can be no larger than 15 digits!');
         }
     });
+});
+
+decimal.addEventListener('click', (e) => {
+    isDecimal = true;
 });
 
 //operator functions
@@ -73,9 +85,10 @@ const topDisplay = document.querySelector('.hightext');
 operatorList.forEach(button => {
     button.addEventListener('click', (e) => {
         operatorInput = button.textContent;
-        topDisplay.textContent = `${aNumber}${operatorInput}`;
+        topDisplay.textContent = `${aNumber} ${operatorInput}`;
         inputDisplay.textContent = '';
         displayNum = '';
+        isDecimal = false;
     });
 });
 
@@ -84,9 +97,10 @@ operatorList.forEach(button => {
 const equalsSign = document.querySelector('.equals');
 
 equalsSign.addEventListener('click', (e) => {
-    topDisplay.textContent = `${aNumber}${operatorInput}${bNumber}${equalsSign.textContent}`;
+    topDisplay.textContent = `${aNumber} ${operatorInput} ${bNumber} ${equalsSign.textContent}`;
     answer = operate(aNumber, bNumber, operatorInput);
     inputDisplay.textContent = `${answer}`;
+    isDecimal = false;
 });
 
 /*clearScreen even listener takes the reference to the button element
@@ -100,9 +114,9 @@ clearScreen.addEventListener('click', (e) => {
     inputDisplay.textContent = '';
     topDisplay.textContent = '';
     displayNum = '';
-    number = null;
     operatorInput = '';
     aNumber = null;
     bNumber = null;
+    isDecimal = false;
 });
  
