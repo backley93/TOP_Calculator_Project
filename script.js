@@ -1,12 +1,12 @@
 //functions for calculator operations
 
-const add = (a, b) => a + b;
+const add = (a, b) => (a + b);
 
-const subtract = (a, b) => a - b;
+const subtract = (a, b) => (a - b);
 
-const multiply = (a, b) => a * b;
+const multiply = (a, b) => (a * b);
 
-const divide = (a, b) => a / b;
+const divide = (a, b) => (a / b);
 
 const operate = function(a, b, operator) {
     if(operator === '+') {
@@ -59,13 +59,17 @@ numList.forEach(button => {
         if(isDecimal === true && button.textContent === '.') {
             return alert('Can only enter one decimal.');
         }
-        displayNum = displayNum + button.textContent;
-        inputDisplay.textContent = displayNum;
-        if(operatorInput === '') {
-            aNumber = parseFloat(displayNum);
-        } else {
+
+        if(operatorInput !== '') {
+            displayNum = displayNum + button.textContent;
+            inputDisplay.textContent = displayNum;
             bNumber = parseFloat(displayNum);
+        } else {
+            displayNum = displayNum + button.textContent;
+            inputDisplay.textContent = displayNum;
+            aNumber = parseFloat(displayNum);
         }
+        
         if(displayNum.length > 14) {
             return alert('Input number can be no larger than 15 digits!');
         }
@@ -84,7 +88,10 @@ const topDisplay = document.querySelector('.hightext');
 
 operatorList.forEach(button => {
     button.addEventListener('click', (e) => {
-        if(bNumber === null) {
+        if(bNumber !== null) {
+            operatorInput = button.textContent;
+            topDisplay.textContent = `${aNumber} ${operatorInput}`;
+        } else {
             operatorInput = button.textContent;
             topDisplay.textContent = `${aNumber} ${operatorInput}`;
             inputDisplay.textContent = '';
@@ -103,6 +110,27 @@ equalsSign.addEventListener('click', (e) => {
     answer = operate(aNumber, bNumber, operatorInput);
     inputDisplay.textContent = `${answer}`;
     isDecimal = false;
+    aNumber = null;
+    bNumber = null;
+    operatorInput = '';
+    displayNum = '';
+});
+
+//backspace function
+
+const backSpace = document.querySelector('.delete');
+
+backSpace.addEventListener('click', (e) => {
+    if(displayNum.length > 0) {
+        displayNum = displayNum.slice(0, displayNum.length - 1);
+        inputDisplay.textContent = `${displayNum}`;
+    }
+
+    if(topDisplay.textContent.includes(`${aNumber}`) === true) {
+        bNumber = parseFloat(displayNum);
+    } else {
+        aNumber = parseFloat(displayNum);
+    }
 });
 
 /*clearScreen even listener takes the reference to the button element
@@ -121,4 +149,3 @@ clearScreen.addEventListener('click', (e) => {
     bNumber = null;
     isDecimal = false;
 });
- 

@@ -89,7 +89,7 @@ button {
 }
 
 .clear,
-.backspace,
+.delete,
 .decimal {
     width: 170px;
     height: 50px;
@@ -141,7 +141,7 @@ button {
 }
 
 .clear:hover,
-.backspace:hover,
+.delete:hover,
 .decimal:hover {
     background-color: rgb(170, 170, 170);
     cursor: pointer;
