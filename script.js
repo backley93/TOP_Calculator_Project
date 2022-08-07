@@ -69,7 +69,7 @@ numList.forEach(button => {
             inputDisplay.textContent = displayNum;
             aNumber = parseFloat(displayNum);
         }
-        
+
         if(displayNum.length > 14) {
             return alert('Input number can be no larger than 15 digits!');
         }
@@ -88,10 +88,22 @@ const topDisplay = document.querySelector('.hightext');
 
 operatorList.forEach(button => {
     button.addEventListener('click', (e) => {
+        if(operatorInput !== null && aNumber !== null && bNumber !== null) {
+            answer = operate(aNumber, bNumber, operatorInput);
+            inputDisplay.textContent = `${answer}`;
+            topDisplay.textContent = `${answer} ${button.textContent}`;
+            aNumber = answer;
+            answer = null;
+            bNumber = null;
+            isDecimal = false;
+            displayNum = '';
+            operatorInput = button.textContent;
+        }
+        
         if(bNumber !== null) {
             operatorInput = button.textContent;
             topDisplay.textContent = `${aNumber} ${operatorInput}`;
-        } else {
+        } else if(operatorInput === '' && aNumber !== null){
             operatorInput = button.textContent;
             topDisplay.textContent = `${aNumber} ${operatorInput}`;
             inputDisplay.textContent = '';
