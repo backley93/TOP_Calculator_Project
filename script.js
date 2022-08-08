@@ -99,6 +99,11 @@ operatorList.forEach(button => {
             displayNum = '';
             operatorInput = button.textContent;
         }
+
+        if(aNumber !== null && operatorInput !== '') {
+            operatorInput = button.textContent;
+            topDisplay.textContent = `${aNumber} ${operatorInput}`;
+        }
         
         if(bNumber !== null) {
             operatorInput = button.textContent;
